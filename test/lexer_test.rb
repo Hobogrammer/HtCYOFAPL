@@ -26,10 +26,10 @@ class LexerTest < Test::Unit::TestCase
 	def test_indent
 		code = <<-CODE
 if 1:
-	print "..."
-	if false:
-		pass
-	print "done!"
+  print "..."
+  if false:
+    pass
+  print "done!"
 print "The End"
 CODE
 		tokens = [
@@ -39,10 +39,10 @@ CODE
 				[:IF, "if"], [:FALSE, "false"],
 				[:INDENT, 4],
 						[:IDENTIFIER, "pass"],
-					[:NEWLINE, "\n"],[:DEDENT, 2],
+					[:DEDENT, 2],[:NEWLINE, "\n"],
 					[:IDENTIFIER, "print"], 
 					[:STRING, "done!"],
-				 	[:NEWLINE, "\n"],[:DEDENT, 0],
+				 	[:DEDENT, 0],[:NEWLINE, "\n"],
 				[:IDENTIFIER, "print"], [:STRING, "The End"]
 		]
 		assert_equal tokens, Lexer.new.tokenize(code)
