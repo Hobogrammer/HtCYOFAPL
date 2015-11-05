@@ -64,7 +64,7 @@ CODE
 
     tokens = [
       [:IF, "if"], [:NUMBER, 1],
-      ["{", "{"]. [:NEWLINE, "\n"],
+      ["{", "{"], [:NEWLINE, "\n"],
         [:IDENTIFIER, "print"], [:STRING, "..."],[:NEWLINE, "\n"],
         [:IF, "if"], [:FALSE, "false"], ["{", "{"], [:NEWLINE, "\n"],
           [:IDENTIFIER, "pass"], [:NEWLINE, "\n"],
