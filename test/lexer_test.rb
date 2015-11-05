@@ -47,4 +47,32 @@ CODE
 		]
 		assert_equal tokens, Lexer.new.tokenize(code)
 	end
+
+  def test_braket_lexer
+    require "bracket_lexer"
+
+    code = <<-CODE
+if 1 {
+  print "..."
+  if false {
+    pass
+  }
+  print "done!"
+}
+print "The End"
+CODE
+
+    tokens = [
+      [:IF, "if"], [:NUMBER, 1],
+      ["{", "{"]. [:NEWLINE, "\n"],
+        [:IDENTIFIER, "print"], [:STRING, "..."],[:NEWLINE, "\n"],
+        [:IF, "if"], [:FALSE, "false"], ["{", "{"], [:NEWLINE, "\n"],
+          [:IDENTIFIER, "pass"], [:NEWLINE, "\n"],
+          ["}", "}"], [:NEWLINE, "\n"],
+        [:IDENTIFIER, "print"], [:STRING, "done!"],[:NEWLINE, "\n"],
+      ["}", "}"], [:NEWLINE, "\n"],
+      [:IDENTIFIER, "print"], [:STRING, "The End"]
+    ]
+    assert_equal tokens, BracketLexer.new.tokenize(code)
+  end
 end
